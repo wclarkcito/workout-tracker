@@ -10,6 +10,7 @@ const API = {
 
         return json[json.length - 1];
     },
+    //not sending back json updating old response
     async addExercise(data) {
         const id = location.search.split("=")[1];
 
@@ -18,10 +19,19 @@ const API = {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
         });
+        console.log(res)
+        console.log("here")
+        // let json = await res.json();
+        // res.json().then(
+        //     data => {
+        //         json = data
+        //     }
+        // )
+        // console.log(json)
+        console.log("============")
 
-        const json = await res.json();
-
-        return json;
+        // return json;
+        return res;
     },
     async createWorkout(data = {}) {
         const res = await fetch("/api/workouts", {
@@ -31,7 +41,7 @@ const API = {
         });
 
         const json = await res.json();
-
+        console.log(json)
         return json;
     },
 

@@ -54,7 +54,8 @@ app.get("/api/workouts/range", (req, res) => {
 
 app.put("/api/workouts/:id", (req, res) => {
     console.log(req.body)
-    Workout.findByIdAndUpdate(req.params.id, { $push: { exercise: req.body } }, { new: true, runValidators: true })
+    console.log(req.params.id)
+    Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } }, { new: true, runValidators: true })
         .then(() => res.sendStatus(200))
         .catch(e => console.error(e))
 });

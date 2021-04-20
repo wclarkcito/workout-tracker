@@ -115,6 +115,7 @@ async function handleFormSubmit(event) {
     }
 
     await API.addExercise(workoutData);
+    console.log("prior to clearing input")
     clearInputs();
     toast.classList.add("success");
 }
@@ -147,7 +148,7 @@ if (completeButton) {
     });
 }
 if (addButton) {
-    addButton.addEventListener("click", handleFormSubmit);
+    addButton.addEventListener("click", (event) => handleFormSubmit(event));
 }
 toast.addEventListener("animationend", handleToastAnimationEnd);
 
