@@ -23,13 +23,14 @@ function generatePalette() {
 
 function populateChart(data) {
     console.log(data)
-    let durations = data.map(({ exercises }) => {
-        let totalDuration = 0
-        exercises.forEach(exercise => {
-            totalDuration += exercise.duration
-        })
-        return totalDuration
-    });
+    let durations = data.map(({ totalDuration }) => totalDuration);
+    // let durations = data.map(({ exercises }) => {
+    //     let totalDuration = 0
+    //     exercises.forEach(exercise => {
+    //         totalDuration += exercise.duration
+    //     })
+    //     return totalDuration
+    // });
     console.log(durations)
     let pounds = calculateTotalWeight(data);
     let workouts = workoutNames(data);

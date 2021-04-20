@@ -35,19 +35,58 @@ app.post("/api/workouts", ({ body }, res) => {
 });
 
 app.get("/api/workouts", (req, res) => {
-    Workout.find({}, (error, data) => {
-        if (error) {
-            res.send(error);
-        } else {
-            console.log(data);
-            res.json(data);
-        }
+    console.log("HELLOOOOOO")
+    Workout.aggregate([{
+        $addFields: {
+            totalWeight: {
+                $sum: "$exercises.weight"
+            },
+            totalDuration: {
+                $sum: "$exercises.duration"
+            },
+            totalDistance: {
+                $sum: "$exercises.distance"
+            }
+        },
+
+
+    }]).then(workoutData => {
+        console.log(workoutData)
+        res.json(workoutData)
     })
+    // res.send("hello")
+    // Workout.find({}, (error, data) => {
+    //     if (error) {
+    //         res.send(error);
+    //     } else {
+    //         console.log(data);
+    //         res.json(data);
+    //     }
+    // })
 });
 
 app.get("/api/workouts/range", (req, res) => {
-    Workout.find().limit(7)
-        .then(workout => res.json(workout))
+    Workout
+        .aggregate([{
+            $addFields: {
+                totalWeight: {
+                    $sum: "$exercises.weight"
+                },
+                totalDuration: {
+                    $sum: "$exercises.duration"
+                },
+                totalDistance: {
+                    $sum: "$exercises.distance"
+                }
+            },
+
+
+        }])
+        .limit(7)
+        .then(workout => {
+            console.log(workout)
+            res.json(workout)
+        })
         .catch(e => console.error(e))
     console.log(req.body);
 });
