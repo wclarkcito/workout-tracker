@@ -4,7 +4,15 @@ const logger = require("morgan");
 const path = require("path");
 const Workout = require("./models/workouts");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout",
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+
+    }
+);
 
 const app = express();
 
