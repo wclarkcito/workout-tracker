@@ -99,7 +99,8 @@ app.put("/api/workouts/:id", (req, res) => {
         .catch(e => console.error(e))
 });
 
+var PORT = process.env.PORT || 3001;
 
-app.listen(3000, () => {
-    console.log("App running on port 3000!");
+app.listen(PORT, function () {
+
 });
