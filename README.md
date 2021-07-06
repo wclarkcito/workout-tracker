@@ -12,6 +12,10 @@ As a user, I want to be able to view create and track daily workouts. I want to 
 - Mongoose
 - Express
 
+## Run application
+
+Type npm start from the command line.
+
 ## Link to Github
 
 ## https://github.com/wclarkcito/workout-tracker
